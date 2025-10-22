@@ -9,6 +9,10 @@ TagManager:
   - Wall
   - MyWall
   - WallInimigo
+  - Raquete
+  - Bola
+  - Gol2
+  - Gol1
   layers:
   - Default
   - TransparentFX
