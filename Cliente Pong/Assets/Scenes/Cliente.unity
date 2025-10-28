@@ -231,7 +231,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -242,7 +242,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!61 &407591804
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -826,8 +826,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myId: -1
   Velocidade: 20
-  localCube: {fileID: 407591802}
-  remoteCube: {fileID: 1453299944}
+  localCube: {fileID: 1453299944}
+  remoteCube: {fileID: 407591802}
   bola: {fileID: 1259148019}
 --- !u!4 &1088334625
 Transform:
@@ -879,7 +879,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -889,8 +889,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!58 &1259148021
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -945,7 +945,7 @@ MonoBehaviour:
   textoPontoB: {fileID: 494596296}
   VitoriaLocal: {fileID: 1817622232}
   VitoriaRemote: {fileID: 1767712489}
-  velocidade: 15
+  velocidade: 9
   fatorDesvio: 2
 --- !u!212 &1259148023
 SpriteRenderer:
@@ -1051,7 +1051,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1062,7 +1062,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!61 &1453299946
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1784,7 +1784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5278875192781702341, guid: 056e9807954648e4b8f20d4780e90fcd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.48
+      value: 5.32
       objectReference: {fileID: 0}
     - target: {fileID: 5278875192781702341, guid: 056e9807954648e4b8f20d4780e90fcd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1841,7 +1841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 944683067827788896, guid: e2ef2eede1a79784f880db765da3e25d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.49
+      value: -5.33
       objectReference: {fileID: 0}
     - target: {fileID: 944683067827788896, guid: e2ef2eede1a79784f880db765da3e25d, type: 3}
       propertyPath: m_LocalPosition.z
