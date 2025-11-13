@@ -20,17 +20,13 @@ public class Bola : MonoBehaviour
     public float velocidade = 6f;
     public float fatorDesvio = 2f;
     public int pontuacaoMaxima = 10;
-
     private bool jogoEncerrado = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         udpClient = FindFirstObjectByType<UdpClientFourPlayers>();
-        
-        // 🔧 Atualiza UI no início
-        AtualizarPontuacao();
-        
+
         if (udpClient != null && udpClient.myId == 1)
             Invoke("LancarBola", 1f);
     }
@@ -63,15 +59,13 @@ public class Bola : MonoBehaviour
     {
         if (jogoEncerrado) return;
 
-        // 🔧 Apenas o Player 1 detecta colisões com gols
-        if (udpClient == null || udpClient.myId != 1) return;
-
         if (col.gameObject.CompareTag("Raquete"))
         {
             float posYbola = transform.position.y;
             float posYraquete = col.transform.position.y;
             float alturaRaquete = col.collider.bounds.size.y;
             float diferenca = (posYbola - posYraquete) / (alturaRaquete / 2f);
+
             Vector2 direcao = new Vector2(Mathf.Sign(rb.linearVelocity.x), diferenca * fatorDesvio);
             rb.linearVelocity = direcao.normalized * velocidade;
         }
@@ -79,18 +73,16 @@ public class Bola : MonoBehaviour
         {
             // Gol na esquerda → ponto pro time direito (P2 + P3)
             pontosDireita++;
-            Debug.Log($"[Bola] GOL! Time Direito marcou. Placar: {pontosEsquerda} x {pontosDireita}");
             AtualizarPontuacao();
-            VerificarVitoria(); // 🔧 DESCOMENTADO
+            //VerificarVitoria();
             ResetBola();
         }
         else if (col.gameObject.CompareTag("Gol2"))
         {
             // Gol na direita → ponto pro time esquerdo (P1 + P4)
             pontosEsquerda++;
-            Debug.Log($"[Bola] GOL! Time Esquerdo marcou. Placar: {pontosEsquerda} x {pontosDireita}");
             AtualizarPontuacao();
-            VerificarVitoria(); // 🔧 DESCOMENTADO
+            //VerificarVitoria();
             ResetBola();
         }
     }
@@ -99,16 +91,13 @@ public class Bola : MonoBehaviour
     {
         if (textoEsquerda != null)
             textoEsquerda.text = "Time Esquerdo: " + pontosEsquerda;
-        
         if (textoDireita != null)
             textoDireita.text = "Time Direito: " + pontosDireita;
 
-        // 🔧 Envia atualização para o servidor
         if (udpClient != null && udpClient.myId == 1)
         {
             string msg = $"SCORE:{pontosEsquerda};{pontosDireita}";
             udpClient.SendUdpMessage(msg);
-            Debug.Log($"[Bola] Enviando placar ao servidor: {msg}");
         }
     }
 
@@ -119,16 +108,14 @@ public class Bola : MonoBehaviour
             jogoEncerrado = true;
             rb.linearVelocity = Vector2.zero;
             if (textoVitoria != null)
-                textoVitoria.text = "Time Esquerdo (P1+P4) Venceu!";
-            Debug.Log("Time Esquerdo venceu!");
+                textoVitoria.text = "🏆 Time Esquerdo (P1+P4) Venceu!";
         }
         else if (pontosDireita >= pontuacaoMaxima)
         {
             jogoEncerrado = true;
             rb.linearVelocity = Vector2.zero;
             if (textoVitoria != null)
-                textoVitoria.text = "Time Direito (P2+P3) Venceu!";
-            Debug.Log("Time Direito venceu!");
+                textoVitoria.text = "🏆 Time Direito (P2+P3) Venceu!";
         }
     }
 
@@ -136,7 +123,7 @@ public class Bola : MonoBehaviour
     {
         transform.position = Vector3.zero;
         rb.linearVelocity = Vector2.zero;
-        
+
         if (!jogoEncerrado && udpClient != null && udpClient.myId == 1)
             Invoke("LancarBola", 1.5f);
     }

@@ -940,8 +940,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pontosEsquerda: 0
   pontosDireita: 0
-  textoEsquerda: {fileID: 0}
-  textoDireita: {fileID: 0}
+  textoEsquerda: {fileID: 1483255016}
+  textoDireita: {fileID: 494596296}
   textoVitoria: {fileID: 0}
   velocidade: 9
   fatorDesvio: 2
